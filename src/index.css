@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f9f9f9;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.textSendish {
+  color: #3d6b2f;
+}
+
+.bgSendish {
+  background-color: #3d6b2f;
+}
+
+.slider-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.texthover {
+  position: relative;
+  overflow: hidden;
+  font-weight: 400;
+}
+
+.texthover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+.texthover:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+
+.texthover2 {
+  position: relative;
+  overflow: hidden;
+  font-weight: 400;
+}
+
+.texthover2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: #000000;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+.texthover2:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 50vw;
+
+}
+
+.ant-menu-light .ant-menu-item {
+  color: #3d6b2f;
+
+}
+
+
+.ant-menu-light .ant-menu-item:hover {
+  background-color: #fff;
+  color: #b8d26f;
+
+}
+
+.ant-menu-light .ant-menu-item-active {
+  background-color: #3d6b2f;
+  color: #fff;
+
+}
+
+.ant-menu-light .ant-menu-item-selected {
+  background-color: #b8d26f;
+  color: #fff;
+
+}
+
+
+.ant-table-thead>tr>th {
+  background-color: #b8d26f !important;
+  color: white !important;
+}
+
+.ant-table-column-sorter-up.active,
+.ant-table-column-sorter-down.active {
+  color: white !important;
+  /* Your desired color for the active sorter */
+}
+
+.ant-table-column-sorter-up,
+.ant-table-column-sorter-down {
+  color: #a3a3a3;
+  /* Your desired color for the inactive sorter */
+}
+
+.ant-pagination-item-active {
+  background-color: #3d6b2f !important;
+  /* Active page background color */
+  border-color: #3d6b2f !important;
+  /* Active page border color */
+}
+
+.ant-pagination-item-active a {
+  color: white !important;
+  /* Active page text color */
+}
+
+/* Optional: Hover state for the active pagination item */
+.ant-pagination-item-active:hover {
+  background-color: #3d6b2f !important;
+  /* Same as active color */
+  border-color: #3d6b2f !important;
+}
+
+.ant-table-pagination.ant-pagination {
+  padding-right: 16px;
+  /* Adjust the value as needed */
+}
