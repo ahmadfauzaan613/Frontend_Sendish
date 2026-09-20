@@ -11,7 +11,7 @@ function Sidebar(props) {
   return (
     <Sider width="13vw" theme="light" trigger={null} collapsible collapsed={collapsed}>
       <div className={`${collapsed ? 'hidden fade-in' : 'fade-in'} py-[7px] flex justify-center`}>
-        <img src={Logo1} clas alt="Logo Sendish" className="w-[4.5vw] h-auto" />
+        <img src={Logo1} alt="Logo Sendish" className="w-[4.5vw] h-auto" />
       </div>
       <Menu
         theme="light"

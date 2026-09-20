@@ -38,7 +38,6 @@ function LoginAdmin() {
     })
   }
 
-  console.log(fieldFrom)
 
   return (
     <React.Fragment>

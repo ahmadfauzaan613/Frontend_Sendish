@@ -1,74 +1,27 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBasketShopping, faUser, faSearch } from '@fortawesome/free-solid-svg-icons'
-import Logo2 from '../../Assets/Logo_2-removebg-preview.png'
-import { useNavigate } from 'react-router-dom'
-
-const UserDropdown = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const dropdownRef = useRef(null)
-  const toggleDropdown = () => setIsOpen(!isOpen)
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsOpen(false)
-    }
-  }
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
-
-  return (
-    <div className="relative inline-block text-left" ref={dropdownRef}>
-      <div className="w-[50px] h-[50px] cursor-pointer flex items-center justify-center" onClick={toggleDropdown}>
-        <FontAwesomeIcon icon={faUser} className="textSendish text-lg" />
-      </div>
-      {isOpen && (
-        <div className="absolute left-0 z-10 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
-          <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-            Profile
-          </a>
-          <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-            Settings
-          </a>
-          <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-            Logout
-          </a>
-        </div>
-      )}
-    </div>
-  )
-}
+import { faBars, faBasketShopping, faUser, faXmark } from '@fortawesome/free-solid-svg-icons'
+import Logo from '../../Assets/Logo_2-removebg-preview.png'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
-  const navigate = useNavigate()
+  const [open, setOpen] = useState(false)
+  useEffect(() => {
+    const closeOnEscape = (event) => event.key === 'Escape' && setOpen(false)
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [])
   return (
-    <React.Fragment>
-      <div className=" py-5">
-        <div className="container mx-auto flex items-center justify-between">
-          <div onClick={() => navigate('/')} className=" h-full cursor-pointer">
-            <img src={Logo2} clas alt="Logo Sendish" className="h-full w-[60px]" />
-          </div>
-          <div className="flex items-center space-x-10">
-            <p className="cursor-pointer">Promo</p>
-            {/* <p>Produk</p>
-            <p>Konfirmasi Pembayaran</p>
-            <p>Status Pemesanan</p> */}
-          </div>
-
-          <div className="flex  items-center ">
-            <div onClick={() => navigate('/keranjang')} className="w-[50px] h-[50px] justify-center cursor-pointer flex items-center ">
-              <FontAwesomeIcon icon={faBasketShopping} className="textSendish text-lg" />
-            </div>
-            <div onClick={() => navigate('/login')} className="w-[50px] h-[50px] justify-center cursor-pointer flex items-center ">
-              <FontAwesomeIcon icon={faUser} className="textSendish text-lg" />
-            </div>
-            {/* <UserDropdown /> */}
-          </div>
-        </div>
+    <header className="site-header">
+      <div className="site-container site-header__inner">
+        <Link to="/" className="brand" aria-label="Sendish, kembali ke beranda"><img src={Logo} alt="" /><span>sendish</span></Link>
+        <button className="menu-toggle" type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="main-navigation"><FontAwesomeIcon icon={open ? faXmark : faBars} /><span>{open ? 'Tutup' : 'Menu'}</span></button>
+        <nav className={`main-nav ${open ? 'main-nav--open' : ''}`} id="main-navigation" aria-label="Navigasi utama">
+          <a href="/#produk" onClick={() => setOpen(false)}>Produk</a><a href="/#tentang" onClick={() => setOpen(false)}>Tentang Sendish</a><a href="/#cara-pesan" onClick={() => setOpen(false)}>Cara pesan</a>
+        </nav>
+        <div className="header-actions"><Link to="/keranjang" aria-label="Lihat keranjang"><FontAwesomeIcon icon={faBasketShopping} /></Link><Link to="/login" aria-label="Masuk ke akun"><FontAwesomeIcon icon={faUser} /></Link></div>
       </div>
-    </React.Fragment>
+    </header>
   )
 }
-
 export default Navbar
